@@ -178,6 +178,36 @@ public class PolinomioF3 {
         }
     }
 
+    public void SumaF1F2(PolinomioF1 A, PolinomioF2 B) {
+        int exp1, pos1, exp2, pos2;
+        int i = 1, j = 2;
+        while (i <= A.getDu() && (j / 2) <= B.getVectf2(0)) {
+            exp1 = A.getDu() - i;
+            pos1 = A.getDu() - exp1;
+            exp2 = B.getVectf2(j);
+            pos2 = B.getVectf2(j - 1);
+            if (exp1 >= exp2) {
+                if (exp1 > exp2) {
+                    InsertarOrdenado(A.getVect(pos1), exp1);
+                    i += 1;
+
+                } else {
+                    InsertarOrdenado((pos2 + A.getVect(pos1)), exp1);
+                    i += 1;
+                    j += 2;
+                }
+            } else{
+
+                InsertarOrdenado(pos2, exp2);
+                j += 2;
+
+            }
+
+        }
+        this.MostrarForma();
+        this.MostrarP();
+    }
+
     public void MostrarP() {
 
         StringBuilder s = new StringBuilder();

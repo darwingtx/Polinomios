@@ -111,14 +111,16 @@ public class Polinomios {
         if (Vs[2] != null) {
             String auxc = "", auxe = "";
             for (int i = 1; i < Vs.length && Vs[i] != null; i += 2) {
-                for (int k = i + 2; k < Vs.length && Vs[k] != null; k += 2) {
+                    
+                for (int k = i + 2;  Vs[k] != null && k < Vs.length ; k += 2) {
                     auxc = Vs[i - 1];
                     auxe = Vs[i];
-                    if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[k])) {
+                    if (Integer.parseInt(Vs[k]) !=0 && (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[k]))) {
                         Vs[i] = Vs[k];
                         Vs[i - 1] = Vs[k - 1];
                         Vs[k] = auxe;
-                        Vs[k + 1] = auxc;
+                        Vs[k - 1] = auxc;
+                        
                     }
                 }
 
@@ -134,6 +136,7 @@ public class Polinomios {
         return Vs;
     }
 
+    
     public static int Grado(String Vs[]) {
         int aux = 0;
         for (int i = 1; i < Vs.length && Vs[i] != null; i += 2) {
@@ -478,21 +481,24 @@ public class Polinomios {
                     break;
                 case 7:
                     int op2 = 0;
-                    PolinomioF3 B = null;
+                    PolinomioF1 B = null;
+                    PolinomioF2 C = null;
                     String VsB[] = null;
                     do {
                         op2 = menuOperaciones();
 
                         switch (op2) {
                             case 1:
-                                if (A != null) {
-
-                                    A.MostrarP();
+                                if (A == null) {
+                                    A = new PolinomioF3();
+                                   // A.MostrarP();
                                     JOptionPane.showMessageDialog(null, "+");
                                     VsB = Ingresar();
-                                    B = new PolinomioF3();
-                                    B.ConvertF3(VsB);
-                                    A.Sumar(B);
+                                    B = new PolinomioF1(Grado(VsB));
+                                    VsB = Ingresar();
+                                    C = new PolinomioF2(Terminos(VsB)*2);
+                                    B.ConvertF1(VsB);
+                                    A.SumaF1F2(B, C);
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
@@ -504,9 +510,9 @@ public class Polinomios {
                                 A.MostrarP();
                                 JOptionPane.showMessageDialog(null, "-");
                                 VsB = Ingresar();
-                                B = new PolinomioF3();
-                                B.ConvertF3(VsB);
-                                A.Restar(B);
+                                //B = new PolinomioF3();
+                                //B.ConvertF3(VsB);
+                               // A.Restar(B);
 
                             } else {
                                 JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
@@ -520,16 +526,14 @@ public class Polinomios {
                                 A.MostrarP();
                                 JOptionPane.showMessageDialog(null, "*");
                                 VsB = Ingresar();
-                                B = new PolinomioF3();
-                                B.ConvertF3(VsB);
-                                A.Multiplicar(B);
+                               // B = new PolinomioF3();
+                               // B.ConvertF3(VsB);
+                              //  A.Multiplicar(B);
 
                             } else {
                                 JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
                             }
                             break;
-
-                            
 
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Has salido del menu operaciones");
