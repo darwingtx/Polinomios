@@ -491,14 +491,12 @@ public class Polinomios {
                             case 1:
                                 if (A == null) {
                                     A = new PolinomioF3();
-                                   // A.MostrarP();
+                                    A.MostrarP();
                                     JOptionPane.showMessageDialog(null, "+");
                                     VsB = Ingresar();
-                                    B = new PolinomioF1(Grado(VsB));
-                                    VsB = Ingresar();
-                                    C = new PolinomioF2(Terminos(VsB)*2);
-                                    B.ConvertF1(VsB);
-                                    A.SumaF1F2(B, C);
+                                    B = new PolinomioF3(Grado(VsB));
+                                    B.ConvertF3(VsB);
+                                    A.Sumar(B);
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
@@ -510,9 +508,9 @@ public class Polinomios {
                                 A.MostrarP();
                                 JOptionPane.showMessageDialog(null, "-");
                                 VsB = Ingresar();
-                                //B = new PolinomioF3();
-                                //B.ConvertF3(VsB);
-                               // A.Restar(B);
+                                B = new PolinomioF3();
+                                B.ConvertF3(VsB);
+                                A.Restar(B);
 
                             } else {
                                 JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
