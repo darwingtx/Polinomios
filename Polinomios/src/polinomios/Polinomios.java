@@ -519,9 +519,9 @@ public class Polinomios {
                                 A.MostrarP();
                                 JOptionPane.showMessageDialog(null, "*");
                                 VsB = Ingresar();
-                               // B = new PolinomioF3();
-                               // B.ConvertF3(VsB);
-                              //  A.Multiplicar(B);
+                                B = new PolinomioF3();
+                                B.ConvertF3(VsB);
+                                A.Multiplicar(B);
 
                             } else {
                                 JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
