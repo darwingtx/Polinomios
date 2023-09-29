@@ -481,23 +481,18 @@ public class Polinomios {
                     break;
                 case 7:
                     int op2 = 0;
-                    PolinomioF1 B = null;
-                    PolinomioF2 C = null;
+                    PolinomioF3 B = new PolinomioF3();
                     String VsB[] = null;
                     do {
                         op2 = menuOperaciones();
-
                         switch (op2) {
                             case 1:
                                 if (A == null) {
-                                    A = new PolinomioF3();
                                     A.MostrarP();
                                     JOptionPane.showMessageDialog(null, "+");
                                     VsB = Ingresar();
-                                    B = new PolinomioF3(Grado(VsB));
                                     B.ConvertF3(VsB);
                                     A.Sumar(B);
-
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No hay polinomio a operar");
                                 }
